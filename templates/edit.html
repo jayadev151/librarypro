@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+      {% include 'cdnlines.html'%}
+  </head>
+  <body>
+      <h1 class = 'text-center'>Welcome {{request.user.first_name}} </h1>
+    <h2 class='text-center'> Update the Library </h2>
+    <form  method="post" class ='form-control'>
+      {% csrf_token %}
+      <label>Enter Book Nmae:</label>
+      <input type="text" name="name" value='{{book.name}}'><br>
+      <label>Enter Author Nmae:</label>
+      <input type="text" name="author" value='{{book.author_name}}'><br>
+      <input type="submit"  value="submit" class='btn btn-success'>
+      <input type="reset"  value="Edit" class='btn btn-primary'>
+
+    </form>
+
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+      {% include 'cdnlines.html'%}
+  </head>
+  <body>
+    <h1 class ='text-center'>Welcome to Login Page</h1>
+    <form  method="post" class='form-control'>
+      {% csrf_token %}
+        {% for fm in form %}
+        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+        {% endfor %}
+
+      <input type="submit"  value="login" class='btn btn-success'>
+
+    </form>
+
+  </body>
+</html>

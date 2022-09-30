@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+      {% include 'cdnlines.html' %}
+  </head>
+  <body>
+    <h1 class = 'text-center'>Welcome {{request.user.first_name}} </h1>
+    {% if book%}
+    <h2 class='text-center'>Available Books in Library</h2>
+    <table class ='table'>
+      <thead>
+      <tr>
+        <th>sno</th>
+        <th>Book Name</th>
+        <th>Author Name</th>
+        <th>Operations</th>
+      </tr>
+      </thead>
+      {% for i in book%}
+      <tbody>
+        <tr>
+          <td>{{i.id}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.author_name}}</td>
+          {% if request.user.is_superuser%}
+          <td> <a href="{% url 'edit' i.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'delete' i.id %}" class ='btn btn-danger'>delete</a>
+           </td>
+           {% else %}
+           <td>null</td>
+           {% endif %}
+
+
+
+        </tr>
+      </tbody>
+    </table>
+     {% endfor %}
+    {% else %}
+    <h2>Books are not Available</h2>
+    {% endif %}
+    <br>
+    <br>
+    {% if request.user.is_superuser %}
+      <a href="{% url 'add' %}" class='btn btn-success'>Add Book</a>
+    {% endif %}
+      <a href="{% url 'user_logout' %}" class ='btn btn-danger'>logout</a>
+
+  </body>
+</html>
